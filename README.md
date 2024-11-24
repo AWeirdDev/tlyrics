@@ -1,6 +1,11 @@
 # tlyrics
 Fetch synced lyrics (with timestamps) from [LRCLib](https://lrclib.net) using the LRC format.
 
+- **📦 Crate**: [crates.io/crates/tlyrics](https://crates.io/crates/tlyrics)
+- **📖 Docs**: [docs.rs/tlyrics/latest](https://docs.rs/tlyrics/latest)
+
+<br />
+
 ## Search
 To search for a track, you can use `search()`:
 
