@@ -1,0 +1,20 @@
+[package]
+name = "tlyrics"
+description = "Fetch synced lyrics (with timestamps) using the LRC format."
+license = "MIT"
+repository = "https://github.com/AWeirdDev/tlyrics"
+readme = "README.md"
+keywords = ["lyrics", "timestamp", "timestamps", "lyrics-timestamps", "lrc"]
+authors = ["AWeirdDev <aweirdscratcher@gmail.com>"]
+categories = ["api-bindings"]
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.93"
+regex = "1.11.1"
+reqwest = { version = "0.12.9", features = ["json"] }
+serde = { version = "1.0.215", features = ["derive"] }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
