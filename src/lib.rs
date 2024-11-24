@@ -75,7 +75,7 @@ impl SyncedLyrics {
 
     /// Returns the synced lyrics as a vector of `(timestamp, lyrics)`.
     pub fn pieces(&self) -> Vec<(Timestamp, String)> {
-        let re = regex::Regex::new(r"\[(\d+):(\d+).(\d+)\]\s*(.+)").unwrap();
+        let re = regex::Regex::new(r"\[(\d+):(\d+).(\d+)\][ ]*(.*)").unwrap();
 
         re.captures_iter(&self.raw)
             .map(|cap| {
@@ -113,6 +113,26 @@ impl SyncedLyrics {
         let (timestamp, lyrics) = &pieces[i];
 
         (timestamp.clone(), lyrics.clone())
+    }
+
+    /// Calculates the delta between each timestamp.
+    /// # Arguments
+    /// * `include_initial` - Whether to include the initial delta. (like waiting for preludes)
+    pub fn deltas(&self, include_initial: bool) -> Vec<f32> {
+        let pieces = self.pieces();
+        let mut deltas = vec![];
+
+        if include_initial {
+            deltas.push(pieces[0].0.seconds());
+        }
+
+        let mut i = 0_usize;
+        while i < pieces.len() - 1 {
+            deltas.push(pieces[i + 1].0.seconds() - pieces[i].0.seconds());
+            i += 1;
+        }
+
+        deltas
     }
 }
 
